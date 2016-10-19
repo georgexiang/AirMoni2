@@ -1,0 +1,32 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "org.oraclejet.apps"
+        },
+        "cordova-plugin-baidupush": {
+            "PACKAGE_NAME": "org.oraclejet.apps"
+        }
+    },
+    "dependent_plugins": {},
+    "modules": [
+        {
+            "file": "plugins/cordova-plugin-baidupush/www/baidupush.js",
+            "id": "cordova-plugin-baidupush.baidupush",
+            "pluginId": "cordova-plugin-baidupush",
+            "clobbers": [
+                "baidupush"
+            ]
+        }
+    ],
+    "plugin_metadata": {
+        "cordova-plugin-whitelist": "1.3.0",
+        "cordova-plugin-baidupush": "1.0.5"
+    }
+}

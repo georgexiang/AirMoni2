@@ -1,0 +1,115 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "res/xml/config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"BaiduPush\"><param name=\"android-package\" value=\"com.xyz.plugins.baidupush.BaiduPushPlugin\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "AndroidManifest.xml": {
+                "parents": {
+                    "/manifest": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.VIBRATE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.DISABLE_KEYGUARD\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />",
+                            "count": 1
+                        }
+                    ],
+                    "/manifest/application": [
+                        {
+                            "xml": "<receiver android:name=\"com.xyz.plugins.baidupush.BaiduPushMessageReceiver\"><intent-filter><action android:name=\"com.baidu.android.pushservice.action.MESSAGE\" /><action android:name=\"com.baidu.android.pushservice.action.RECEIVE\" /><action android:name=\"com.baidu.android.pushservice.action.notification.CLICK\" /></intent-filter></receiver>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<receiver android:name=\"com.baidu.android.pushservice.PushServiceReceiver\" android:process=\":bdservice_v1\"><intent-filter><action android:name=\"android.intent.action.BOOT_COMPLETED\" /><action android:name=\"android.net.conn.CONNECTIVITY_CHANGE\" /><action android:name=\"com.baidu.android.pushservice.action.notification.SHOW\" /><action android:name=\"com.baidu.android.pushservice.action.media.CLICK\" /><action android:name=\"android.intent.action.MEDIA_MOUNTED\" /><action android:name=\"android.intent.action.USER_PRESENT\" /><action android:name=\"android.intent.action.ACTION_POWER_CONNECTED\" /><action android:name=\"android.intent.action.ACTION_POWER_DISCONNECTED\" /></intent-filter></receiver>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<receiver android:name=\"com.baidu.android.pushservice.RegistrationReceiver\" android:process=\":bdservice_v1\"><intent-filter><action android:name=\"com.baidu.android.pushservice.action.METHOD\" /><action android:name=\"com.baidu.android.pushservice.action.BIND_SYNC\" /></intent-filter><intent-filter><action android:name=\"android.intent.action.PACKAGE_REMOVED\" /><data android:scheme=\"package\" /></intent-filter></receiver>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<service android:exported=\"true\" android:name=\"com.baidu.android.pushservice.PushService\" android:process=\":bdservice_v1\"><intent-filter><action android:name=\"com.baidu.android.pushservice.action.PUSH_SERVICE\" /></intent-filter></service>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<service android:exported=\"true\" android:name=\"com.baidu.android.pushservice.CommandService\"></service>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "org.oraclejet.apps"
+        },
+        "cordova-plugin-baidupush": {
+            "PACKAGE_NAME": "org.oraclejet.apps"
+        }
+    },
+    "dependent_plugins": {},
+    "modules": [
+        {
+            "id": "cordova-plugin-baidupush.baidupush",
+            "file": "plugins/cordova-plugin-baidupush/www/baidupush.js",
+            "pluginId": "cordova-plugin-baidupush",
+            "clobbers": [
+                "baidupush"
+            ]
+        }
+    ],
+    "plugin_metadata": {
+        "cordova-plugin-whitelist": "1.3.0",
+        "cordova-plugin-baidupush": "1.0.5"
+    }
+}
