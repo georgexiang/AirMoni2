@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\GitRepo\AirMoni\hybrid\platforms\android\build\intermediates\exploded-aar\android\CordovaLib\unspecified\debug\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.3"
+        sha1="b5f39bf3d83019d7a551f29f0bce4effea83fcc7">
+        <dex dex="D:\GitRepo\AirMoni\hybrid\platforms\android\build\intermediates\pre-dexed\debug\CordovaLib-unspecified-debug_ae909f92d85037944ccf39be31b2afb21d358a35.jar" />
+    </item>
+    <item
+        jar="D:\GitRepo\AirMoni\hybrid\platforms\android\libs\pushservice-4.5.3.48.jar"
+        jumboMode="false"
+        revision="24.0.3"
+        sha1="77392fd69a14d333856f98ef6074643844cb7f61">
+        <dex dex="D:\GitRepo\AirMoni\hybrid\platforms\android\build\intermediates\pre-dexed\debug\pushservice-4.5.3.48_1284364bb6e6b5ac0aa3670fee3ada093343afcb.jar" />
+    </item>
+    <item
+        jar="D:\GitRepo\AirMoni2\hybrid\platforms\android\build\intermediates\exploded-aar\android\CordovaLib\unspecified\debug\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.3"
+        sha1="1361df14fd24cc620bbabe945a859075dcdc223b">
+        <dex dex="D:\GitRepo\AirMoni2\hybrid\platforms\android\build\intermediates\pre-dexed\debug\CordovaLib-unspecified-debug_c81491e412229b7602d3cb0418e05753ee2a58cc.jar" />
+    </item>
+    <item
+        jar="D:\GitRepo\AirMoni2\hybrid\platforms\android\libs\pushservice-4.5.3.48.jar"
+        jumboMode="false"
+        revision="24.0.3"
+        sha1="77392fd69a14d333856f98ef6074643844cb7f61">
+        <dex dex="D:\GitRepo\AirMoni2\hybrid\platforms\android\build\intermediates\pre-dexed\debug\pushservice-4.5.3.48_948bcbf31581b6843cc58173b3521d75d24518c2.jar" />
+    </item>
+
+</items>

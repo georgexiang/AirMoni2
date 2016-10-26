@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "D:\\GitRepo\\AirMoni2\\hybrid\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\xml\\config.xml",
+        "source": "D:\\GitRepo\\AirMoni2\\hybrid\\platforms\\android\\res\\xml\\config.xml"
+    },
+    {
+        "merged": "D:\\GitRepo\\AirMoni\\hybrid\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\xml\\config.xml",
+        "source": "D:\\GitRepo\\AirMoni\\hybrid\\platforms\\android\\res\\xml\\config.xml"
+    }
+]
