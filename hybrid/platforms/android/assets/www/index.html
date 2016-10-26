@@ -42,9 +42,7 @@
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&amp;ak=lxGdpFHaFEvakjvDqafMc814pRI2XEuR"></script> 
         <script type="text/javascript" src="js/echarts.js"></script>
         
-        <script type="text/javascript" src="js/echarts.js"></script>
-        
-    <script type="text/javascript" charset="utf-8">
+            <script type="text/javascript" charset="utf-8">
 
             // Wait for device API libraries to load
             //
@@ -62,16 +60,39 @@
             }
             
             document.addEventListener("deviceready", function(){
-//                    alert("12367");
-                    window.baidupush.startWork("MdZC4s0eZedaupfd13pSYEwi", function(info){
-//                    alert('success__'+info);
-                });
+//                     alert("123689");
+                        var u = navigator.userAgent;
+//                        alert("u____"+u)
+                         if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {
+                               window.baidupush.startWork("MdZC4s0eZedaupfd13pSYEwi", function(info){
+//                                    alert('success__'+info);
+                             });
+                         } else if (u.indexOf('iPhone') > -1) {
+                             window.baidupush.startWork("IOS app key ", function(info){
+     //                               alert('success__'+info);
+                             });
+                       }
+                
+                        //Set tags
+                        window.baidupush.setTags(["air"], function(info){
+                                //your code here
+                        });
                },true);
+               
+               
+//               function getOSType(){
+//                    var u = navigator.userAgent;
+//                    if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {
+//                        return "android";
+//                    } else if (u.indexOf('iPhone') > -1) {
+//                        return "ios";
+//                  }
+//            }
                
                
 
     </script>
-        
+    
     </head>
     <body class="oj-web-applayout-body oj-hybrid oj-platform-cordova oj-platform-android">
         <!-- Template for rendering navigation items shared between nav bar and nav list -->

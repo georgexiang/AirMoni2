@@ -7,27 +7,27 @@
  */
 var js_var_chart1;
 var js_var_chart1_option;
-var js_var_chart1_value = 12;
+var js_var_chart1_value = 0;
 
 var js_var_chart2;
 var js_var_chart2_option;
-var js_var_chart2_value = 12;
+var js_var_chart2_value = 0;
 
 var js_var_chart3;
 var js_var_chart3_option;
-var js_var_chart3_value = 12;
+var js_var_chart3_value = 0;
 
 var js_var_chart4;
 var js_var_chart4_option;
-var js_var_chart4_value = 12;
+var js_var_chart4_value = 0;
 
 var js_var_chart5;
 var js_var_chart5_option;
-var js_var_chart5_value = 12;
+var js_var_chart5_value = 0;
 
 var js_var_chart6;
 var js_var_chart6_option;
-var js_var_chart6_value = 12;
+var js_var_chart6_value = 0;
 
 
 define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojaccordion', 'ojs/ojcollapsible', 'ojs/ojradioset'],
@@ -212,12 +212,12 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojaccordion',
                                     {
                                         type: 'gauge',
                                         min: 0,
-                                        max: 1000,
+                                        max: 500,
                                         radius: '98%',
                                         axisLine: {// 坐标轴线
                                             show: true, // 默认显示，属性show控制显示与否
                                             lineStyle: {// 属性lineStyle控制线条样式
-                                                color: [[0.35, 'green'], [0.5, 'yellow'], [0.7, 'orange'], [1, 'red']],
+                                                color: [[0.35, 'green'],  [0.7, 'orange'], [1, 'red']],
                                                 width: 30
                                             }
                                         },
@@ -268,12 +268,12 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojaccordion',
                             {
                                 type: 'gauge',
                                 min: 0,
-                                max: 1000,
+                                max: 500,
                                 radius: '98%',
                                 axisLine: {// 坐标轴线
                                     show: true, // 默认显示，属性show控制显示与否
                                     lineStyle: {// 属性lineStyle控制线条样式
-                                        color: [[0.35, 'green'], [0.5, 'yellow'], [0.7, 'orange'], [1, 'red']],
+                                        color: [[0.35, 'green'],  [0.7, 'orange'], [1, 'red']],
                                         width: 30
                                     }
                                 },
@@ -324,12 +324,12 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojaccordion',
                             {
                                 type: 'gauge',
                                 min: 0,
-                                max: 500,
+                                max: 3,
                                 radius: '98%',
                                 axisLine: {// 坐标轴线
                                     show: true, // 默认显示，属性show控制显示与否
                                     lineStyle: {// 属性lineStyle控制线条样式
-                                        color: [[0.35, 'green'], [0.5, 'yellow'], [0.7, 'orange'], [1, 'red']],
+                                        color: [[0.35, 'green'],  [0.7, 'orange'], [1, 'red']],
                                         width: 30
                                     }
                                 },
@@ -380,12 +380,12 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojaccordion',
                             {
                                 type: 'gauge',
                                 min: 0,
-                                max: 500,
+                                max: 3,
                                 radius: '98%',
                                 axisLine: {// 坐标轴线
                                     show: true, // 默认显示，属性show控制显示与否
                                     lineStyle: {// 属性lineStyle控制线条样式
-                                        color: [[0.35, 'green'], [0.5, 'yellow'], [0.7, 'orange'], [1, 'red']],
+                                        color: [[0.35, 'green'],  [0.7, 'orange'], [1, 'red']],
                                         width: 30
                                     }
                                 },
@@ -448,9 +448,9 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojaccordion',
             return new CustomerViewModel();
         }
 );
-function gaugeClicked(obj)
+function gaugeClicked(chartType)
 {
-    parent.location = "index.html?root=graphics";
+    parent.location = "index.html?root=incidents&chartType="+chartType;
 }
 
 function js_getIOTData()
@@ -463,7 +463,7 @@ function js_getIOTData()
 //        });
 //    return;
     var aj = $.ajax({
-        url: 'https://iotpmjapac1641-seoracletrial13180.iot.us.oraclecloud.com/iot/api/v2/messages?type=data&limit=1',
+        url: 'https://iotpmjapac1641-seoracletrial13180.iot.us.oraclecloud.com/iot/api/v2/messages?&device='+localStorage.cur_device+'&limit=10',
         headers: {"Authorization": "Basic eXVrdWkuamluQG9yYWNsZS5jb206VGVtcCMxMjM="
 
         },
@@ -473,29 +473,57 @@ function js_getIOTData()
         cache: false,
         success: function (data) {
             // alert(self.decryptByDES(data) );
-            console.log(data);
-
-            js_var_chart1_option.series[0].data[0].value = data.items[0].payload.data.temperature.toFixed(2);
-            js_var_chart1.setOption(js_var_chart1_option, true);
-
-            js_var_chart2_option.series[0].data[0].value = data.items[0].payload.data.humidity.toFixed(2);
-            js_var_chart2.setOption(js_var_chart2_option, true);
-
-            js_var_chart3_option.series[0].data[0].value = data.items[0].payload.data.pm25.toFixed(2);
+            console.log("data:length:"+data.items.length);
+            var pm25=0;
+            var pm10=0;
+            var hcho=0;
+            var vocs=0;
+            var temperature=0;
+            var humidity=0;
+            var js_dataAll;
+            if(data.items.length==10)
+            {
+                for(var i=0;i<10;i++)
+                {
+                    console.log("data length:"+data.items[i].payload.data.length)
+                    if(data.items[i].type=="DATA")
+                    {
+                       pm25=data.items[i].payload.data.pm25.toFixed(2);
+                       pm10=data.items[i].payload.data.pm10.toFixed(2);
+                       hcho=data.items[i].payload.data.hcho.toFixed(2);
+                       vocs=data.items[i].payload.data.vocs.toFixed(2);
+                       temperature=data.items[i].payload.data.temperature.toFixed(2);
+                       humidity=data.items[i].payload.data.humidity.toFixed(2);
+                       
+                       js_dataAll =data.items[i];
+                       break;
+                    }
+                }
+               
+            }
+            
+            
+            js_var_chart3_option.series[0].data[0].value = pm25;
             js_var_chart3.setOption(js_var_chart3_option, true);
 
-            js_var_chart4_option.series[0].data[0].value = data.items[0].payload.data.pm10.toFixed(2);
+            js_var_chart4_option.series[0].data[0].value = pm10;
             js_var_chart4.setOption(js_var_chart4_option, true);
 
-            js_var_chart5_option.series[0].data[0].value = data.items[0].payload.data.hcho.toFixed(2);
+            js_var_chart5_option.series[0].data[0].value = hcho
             js_var_chart5.setOption(js_var_chart5_option, true);
 
 
-            js_var_chart6_option.series[0].data[0].value = data.items[0].payload.data.vocs.toFixed(2);
+            js_var_chart6_option.series[0].data[0].value = vocs;
             js_var_chart6.setOption(js_var_chart6_option, true);
             
+            js_var_chart1_option.series[0].data[0].value = temperature;
+            js_var_chart1.setOption(js_var_chart1_option, true);
+
+            js_var_chart2_option.series[0].data[0].value = humidity;
+            js_var_chart2.setOption(js_var_chart2_option, true);
+
             
-           js_saveIOTData(data);
+           //js_saveIOTData(js_dataAll);
             
           
         },
@@ -516,7 +544,7 @@ function js_saveIOTData(data)
 {
     //get data from localStorage
     //localStorage.setItem("pm25Series",data.items[0].payload.data.pm25.toFixed(2));    
-    js_saveIOTDataPM25(data);
+    //js_saveIOTDataPM25(data);
     
 }
 
@@ -535,7 +563,7 @@ function js_saveIOTDataPM25(data)
         }
     }
     
-    arrayPm25Serires.push(data.items[0].payload.data.pm25.toFixed(2));
+    arrayPm25Serires.push(data.payload.data.pm25.toFixed(2));
     localStorage.setItem("pm25Series",JSON.stringify(arrayPm25Serires));
     
     //group
@@ -544,7 +572,7 @@ function js_saveIOTDataPM25(data)
     //window.localStorage.setItem("pm25Groups",JSON.stringify(pm25Groups));
     if (!localStorage.pm25Groups) localStorage.pm25Groups = JSON.stringify(pm25Groups);
    //localStorage.setItem("pm25Groups",{"ddd""dd"});
-    var dateStr=timeStamp2String(data.items[0].eventTime);
+    var dateStr=timeStamp2String(data.eventTime);
     console.log("dateStr:"+dateStr);
     var arrayPm25Groups=JSON.parse(localStorage.pm25Groups);
     console.log("array Group Size:"+arrayPm25Groups.length);
@@ -572,5 +600,5 @@ function timeStamp2String(time){
     var minute = datetime.getMinutes()< 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();  
     var second = datetime.getSeconds()< 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();  
    //return year + "-" + month + "-" + date+" "+hour+":"+minute+":"+second;  
-   return  hour+":"+minute+":"+second;  
+   return  month + "-" + date+ " " + hour+":"+ minute ;
 }  
